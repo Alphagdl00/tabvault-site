@@ -15,7 +15,7 @@ code{background:#0a1728;padding:.15em .4em;border-radius:6px}ul{padding-left:1.3
 </style></head>
 <body><main>
 <nav><div class="brand"><span>◆</span> TabVault</div><div class="links"><a href="index.html">Inicio</a> · <a href="support.html">Soporte</a></div></nav>
-<span class="pill">Última actualización: 4 de noviembre de 2026</span>
+<span class="pill">Última actualización: 6 de noviembre de 2026</span>
 <h1 style="font-size:clamp(2.3rem,6vw,4rem)">Política de privacidad</h1>
 <p>Esta política explica qué información maneja TabVault, por qué la necesita y dónde se almacena. TabVault está diseñado como una extensión local-first y no opera un servidor propio para almacenar la biblioteca de pestañas de los usuarios.</p>
 
@@ -34,25 +34,26 @@ code{background:#0a1728;padding:.15em .4em;border-radius:6px}ul{padding-left:1.3
 <p>La información de pestañas se procesa cuando el usuario utiliza funciones de TabVault para guardar una ventana, guardar o restaurar pestañas, organizar grupos o sincronizar su biblioteca. TabVault no monitoriza de forma continua el historial de navegación para fines publicitarios o de perfilado.</p>
 
 <h2>3. Almacenamiento local</h2>
-<p>La biblioteca y las preferencias de TabVault se almacenan localmente mediante las APIs de almacenamiento de Chrome. El usuario puede utilizar TabVault sin activar la sincronización con Google Drive.</p>
+<p>La biblioteca y las preferencias de TabVault se almacenan localmente mediante las APIs de almacenamiento de Chrome. El usuario puede utilizar TabVault sin activar la sincronización con Chrome.</p>
 
-<h2>4. Sincronización opcional con Google Drive</h2>
-<p>Si el usuario activa Google Drive Sync, TabVault utiliza la autorización de Google para acceder únicamente al espacio privado de aplicación de TabVault en Google Drive (<code>appDataFolder</code>). TabVault no solicita acceso general a los documentos personales del usuario.</p>
-<p>Los datos de la biblioteca destinados a sincronización se cifran localmente antes de enviarse a Google Drive. La clave del vault no se envía a un servidor de TabVault. Si el usuario pierde esa clave, TabVault no puede recuperar el contenido cifrado.</p>
-<p>Google puede procesar datos conforme a sus propios términos y políticas cuando el usuario utiliza Google Drive. TabVault no controla la infraestructura de Google.</p>
+<h2>4. Sincronización opcional con Chrome Sync</h2>
+<p>Si el usuario activa la sincronización, TabVault utiliza <code>chrome.storage.sync</code>, el mecanismo de sincronización de extensiones de Chrome. Chrome gestiona el transporte de esos datos entre navegadores donde el usuario tenga iniciada su cuenta y la sincronización habilitada.</p>
+<p>Antes de escribir URLs y títulos en Chrome Sync, TabVault comprime y cifra los datos localmente con AES-GCM usando una clave derivada de la contraseña del vault. La contraseña del vault no se sincroniza. Si el usuario decide recordarla, se conserva únicamente en el almacenamiento local de la extensión en ese equipo.</p>
+<p>TabVault no opera un servidor propio ni recibe credenciales de la cuenta de Google o Chrome del usuario.</p>
+<p>Chrome Sync tiene límites de almacenamiento. Si se alcanza la cuota, TabVault conserva la biblioteca local y el usuario puede seguir utilizando respaldos JSON.</p>
 
-<h2>5. Autenticación</h2>
-<p>TabVault utiliza las APIs de identidad de Chrome y Google OAuth exclusivamente para permitir que el usuario autorice la sincronización opcional con su propio Google Drive. TabVault no opera un sistema propio de cuentas ni recibe la contraseña de Google del usuario.</p>
+<h2>5. Cuenta y autenticación</h2>
+<p>TabVault no crea cuentas propias y no utiliza Google OAuth. La sincronización depende de la configuración de Chrome Sync del navegador. TabVault no recibe ni procesa la contraseña de la cuenta de Chrome o Google del usuario.</p>
 
 <h2>6. Venta, publicidad y transferencia de datos</h2>
 <p>TabVault no vende datos personales, no comercializa datos de navegación, no muestra publicidad y no utiliza los datos del usuario para determinar solvencia, otorgar crédito ni crear perfiles publicitarios.</p>
-<p>Los datos sólo se transfieren cuando es necesario para la función solicitada por el usuario, por ejemplo al sincronizar la biblioteca cifrada con Google Drive.</p>
+<p>Los datos sólo se sincronizan cuando el usuario activa esa función y únicamente mediante Chrome Sync, en forma cifrada por TabVault.</p>
 
 <h2>7. Conservación y eliminación</h2>
-<p>Los datos locales permanecen en el navegador hasta que el usuario elimina grupos, borra los datos de la extensión o desinstala TabVault. Los datos sincronizados permanecen en el espacio privado de aplicación de Google Drive mientras sean necesarios para mantener la sincronización o hasta que el usuario los elimine mediante TabVault o gestione el acceso/datos desde su cuenta de Google.</p>
+<p>Los datos locales permanecen en el navegador hasta que el usuario elimina grupos, borra los datos de la extensión o desinstala TabVault. Los datos sincronizados permanecen en Chrome Sync mientras formen parte del vault sincronizado. El usuario puede eliminar grupos desde TabVault; la biblioteca local también puede eliminarse al borrar los datos de la extensión o desinstalarla.</p>
 
 <h2>8. Seguridad</h2>
-<p>TabVault aplica cifrado local a los datos destinados a Google Drive y limita sus permisos al mínimo necesario para guardar, restaurar y sincronizar pestañas. Ningún sistema puede garantizar seguridad absoluta, por lo que recomendamos conservar respaldos cuando la biblioteca sea importante.</p>
+<p>TabVault aplica cifrado local a los datos destinados a Chrome Sync y limita sus permisos al mínimo necesario para guardar, restaurar y sincronizar pestañas. Ningún sistema puede garantizar seguridad absoluta, por lo que recomendamos conservar respaldos cuando la biblioteca sea importante.</p>
 
 <h2>9. Menores de edad</h2>
 <p>TabVault no está diseñado para recopilar conscientemente información personal de menores ni contiene funciones dirigidas específicamente a menores.</p>
